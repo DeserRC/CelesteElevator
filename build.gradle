@@ -1,0 +1,39 @@
+plugins {
+    id "com.github.johnrengelman.shadow" version "6.1.0"
+    id 'java'
+}
+
+group 'com.celeste.celesteelevator'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+
+    maven { url "https://hub.spigotmc.org/nexus/content/repositories/snapshots/"}
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots"}
+    maven { url "https://jitpack.io" }
+}
+
+dependencies {
+    /*
+    SPIGOT
+    */
+    compileOnly "org.spigotmc:spigot:1.8.8-R0.1-SNAPSHOT"
+
+    /*
+    FRAMEWORK
+    */
+    implementation "com.github.SaiintBrisson.command-framework:bukkit:1.1.1"
+    implementation 'com.github.rede-celeste.common:spigot:691c166af2'
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+tasks.withType(Jar) {
+    destinationDirectory.set(file("$rootDir/target/"))
+}
