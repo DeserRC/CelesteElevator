@@ -24,7 +24,9 @@ public class ChatUtil extends MessagesUtil {
         if (message == null) return;
 
         if (message instanceof List) {
-            ((List<String>) message).forEach(sender::sendMessage);
+            @SuppressWarnings("unchecked")
+            final List<String> finalMessage = (List<String>) message;
+            finalMessage.forEach(sender::sendMessage);
             return;
         }
 
@@ -38,7 +40,9 @@ public class ChatUtil extends MessagesUtil {
         if (message == null) return;
 
         if (message instanceof List) {
-            ((List<String>) message).forEach(Bukkit::broadcastMessage);
+            @SuppressWarnings("unchecked")
+            final List<String> finalMessage = (List<String>) message;
+            finalMessage.forEach(Bukkit::broadcastMessage);
             return;
         }
 
