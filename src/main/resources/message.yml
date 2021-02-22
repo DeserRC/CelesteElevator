@@ -1,0 +1,154 @@
+up: # When the player is taken one floor above
+  # Message which will be sent when the player taken one above floor successfully
+  success: # Text message
+    Use: false
+    Message: "&6&lELEVATOR &7You have been taken one floor &a&lUP."
+  success_bar: # ActionBar message
+    Use: true
+    Message: "&7You have been taken one floor &a&lUP"
+  success_title: # Title and SubTitle message
+    Use: true
+    Title: "&a&lUP"
+    SubTitle: ""
+
+down: # When the player is taken one bellow above
+  # Message which will be sent when the player taken one bellow floor successfully
+  success: # Text message
+    Use: false
+    Message: "&6&lELEVATOR &7You have been taken one floor &c&lDOWN."
+  success_bar: # ActionBar message
+    Use: true
+    Message: "&7You have been taken one floor &c&lDOWN"
+  success_title: # Title and SubTitle message
+    Use: true
+    Title: "&c&lDOWN"
+    SubTitle: ""
+
+place: # When the player place a elevator
+  # Message which will be sent when the player place a elevator
+  success: # Text message
+    Use: true
+    Message: "&6&lELEVATOR &7You placed an elevator."
+  success_bar: # ActionBar message
+    Use: false
+    Message: "&7You placed an elevator"
+  success_title: # Title and SubTitle message
+    Use: false
+    Title: "&6Elevators"
+    SubTitle: "&7You placed an elevator"
+
+  # Message which will be sent when the player tries to place an elevator in an unallowed world
+  blacklist: # Text message
+    Use: true
+    Message: "&6&lELEVATOR &7You can't place elevators in this world."
+  blacklist_bar: # ActionBar message
+    Use: false
+    Message: "&7You can't place elevators in this world"
+  blacklist_title: # Title and SubTitle message
+    Use: false
+    Title: "&6Elevators"
+    SubTitle: "&7You can't place elevators in this world"
+
+break: # When the player break a elevator
+  # Message which will be sent when the player break a elevator
+  success: # Text message
+    Use: true
+    Message: "&6&lELEVATOR &7You broke an elevator."
+  success_bar: # ActionBar message
+    Use: false
+    Message: "&7You broke an elevator"
+  success_title: # Title and SubTitle message
+    Use: false
+    Title: "&6Elevators"
+    SubTitle: "&7You broke an elevator"
+
+elevator: # Command - /elevator
+  # Message which will be sent when the player give elevators to another player
+  #
+  # Placeholders:
+  # {target} - Target name
+  # {amount} - Amount of elevators given
+  success: # Text message
+    Use: false
+    Message: "&6&lELEVATOR &7You sent elevators to &6{target}&7."
+  success_bar: # ActionBar message
+    Use: false
+    Message: "&7You sent elevators to &6{target}"
+  success_title: # Title and SubTitle message
+    Use: false
+    Title: "&6Elevators"
+    SubTitle: "&7You sent elevators to &6{target}"
+
+  # Message which will be sent when the player receives elevators
+  #
+  # Placeholders:
+  # {sender} - Sender name
+  # {amount} - Amount of elevators given
+  receive: # Text message
+    Use: true
+    Message: "&6&lELEVATOR &7You received &6{amount} &7elevators."
+  receive_bar: # ActionBar message
+    Use: false
+    Message: "&7You received &6{amount} &7elevators"
+  receive_title: # Title and SubTitle message
+    Use: false
+    Title: "&6Elevators"
+    SubTitle: "&7You received &6{amount} &7elevators"
+
+  # Message which will be sent if the player doesn't exist
+  #
+  # Placeholders:
+  # {player} - The given player name
+  player_not_found: # Text message
+    Use: true
+    Message: "&6&lELEVATOR &7Player not found!"
+  player_not_found-bar: # ActionBar message
+    Use: false
+    Message: "&7Player not found!"
+  player_not_found-title: # Title and SubTitle message
+    Use: false
+    Title: "&6Error"
+    SubTitle: "&7Player not found!"
+
+  # Message which will be sent if the material doesn't exist
+  #
+  # Placeholders:
+  # {material} - The given material name
+  material_not_found: # Text message
+    Use: true
+    Message: "&6&lELEVATOR &7Material not found"
+  material_not_found_bar: # ActionBar message
+    Use: false
+    Message: "&7Material not found!"
+  material_not_found_title: # Title and SubTitle message
+    Use: false
+    Title: "&6Error"
+    SubTitle: "&7Material not found!"
+
+  # Message which will be sent when the amount is less than or equal to 0
+  #
+  # Placeholders:
+  # {amount} - The given amount
+  invalid_amount: # Text message
+    Use: true
+    Message: "&6&lELEVATOR &7Amount isn't valid"
+  invalid_amount_bar: # ActionBar message
+    Use: false
+    Message: "&7Amount isn't valid!"
+  invalid_amount_title: # Title and SubTitle message
+    Use: false
+    Title: "&6Error"
+    SubTitle: "&7Amount isn't valid"
+
+reload: # Command - /elevator reload
+  # Message which will be sent when the player reload configuration
+  success: # Text message
+    Use: true
+    Message: "&6&lELEVATOR &7Reload successfully."
+  success_bar: # ActionBar message
+    Use: false
+    Message: "&7Reload successfully"
+  success_title: # Title and SubTitle message
+    Use: false
+    Title: "&6Reload"
+    SubTitle: "&7successfully"

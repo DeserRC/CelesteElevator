@@ -1,0 +1,19 @@
+mysql:
+  hostname: "localhost"
+  port: "3306"
+  database: "test"
+  username: "root"
+  password: ""
+
+elevator: # Elevator Template
+  # Item name
+  name: "&6&lELEVATOR"
+  # Enables / Disables Glow
+  glow: false
+  # Item lore
+  #
+  # Placeholders:
+  # {material} - Material name
+  lore: []
+  # Item enchantment (Remember in disable the glow) - (All Minecraft enchants https://ghostbin.co/paste/w2ttacs)
+  enchantment: []

@@ -21,13 +21,22 @@ dependencies {
     /*
     SPIGOT
     */
-    compileOnly "org.spigotmc:spigot:1.8.8-R0.1-SNAPSHOT"
+    compileOnly "org.spigotmc:spigot:1.16.4-R0.1-SNAPSHOT"
 
     /*
     FRAMEWORK
     */
     implementation "com.github.SaiintBrisson.command-framework:bukkit:1.1.1"
     implementation 'com.github.rede-celeste.common:spigot:691c166af2'
+    implementation 'com.github.rede-celeste.common:shared:7a7f106901'
+    implementation 'com.github.rede-celeste.databases:mysql-provider:1b320c2389'
+
+    /*
+    ANNOTATION
+    */
+    compileOnly 'org.projectlombok:lombok:1.18.12'
+    annotationProcessor 'org.projectlombok:lombok:1.18.12'
+
 }
 
 tasks.withType(JavaCompile) {

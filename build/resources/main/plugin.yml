@@ -1,0 +1,4 @@
+name: CelesteElevator
+main: com.celeste.celesteelevator.CelesteElevator
+version: 1.0.0
+authors: [Luiza Prestes, Deser]
