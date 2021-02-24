@@ -48,7 +48,12 @@ public class TeleportListener implements Listener {
             final Block nextBlock = newLocation.getBlock();
             if (!elevator.containsMetaData(nextBlock)) continue;
 
-            player.teleport(nextBlock.getLocation().add(0.5, 1, 0.5));
+            final Location nextBlockLocation = nextBlock.getLocation();
+            nextBlockLocation.add(0.5, 1, 0.5);
+            nextBlockLocation.setPitch(to.getPitch());
+            nextBlockLocation.setYaw(to.getYaw());
+
+            player.teleport(nextBlockLocation);
             elevator.sendSound(player, "sound.up.");
             elevator.sendParticle(player, DirectionType.UP);
             message.adaptAndSendToSender(player, "up.success");

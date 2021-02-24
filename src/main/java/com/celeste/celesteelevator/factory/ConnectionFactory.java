@@ -25,6 +25,7 @@ public class ConnectionFactory {
           config.getConfig("mysql.password")
         );
 
+
         this.elevatorDAO = new ElevatorDAO(sqlProcessor.getSqlConnectionProvider());
     }
 

@@ -121,7 +121,9 @@ public class ElevatorManager {
 
     public void sendParticle(final Player player, final DirectionType direction) {
         final ConfigManager config = plugin.getConfigManager();
-        final Location location = player.getLocation();
+
+        final Block block = player.getLocation().getBlock();
+        final Location blockLocation = block.getLocation().add(0.5, 0, 0.5);
 
         final String path = "particle." + direction.name().toLowerCase() + ".";
 
@@ -136,72 +138,64 @@ public class ElevatorManager {
         };
 
         for (double i = 0; i < size * 10; i++) {
-            final Location particle = location.clone().add(0.5, size - i / 10, 0.5);
-            sendParticle(particle, color);
+            final Location location = blockLocation.clone().add(0, size - i / 10, 0);
+            sendParticle(player, location, color);
         }
 
-        final Location[] inclined = getDirection(location, size);
-        if (inclined == null) return;
+        final Location[] locations = getDirection(player, blockLocation, size);
+        if (locations == null) return;
 
         for (int i = 0; i < 2; i++) {
 
-            final Location start = location.clone();
-            final Vector end;
+            final Location location = blockLocation.clone();
+            final Vector vector;
 
             if (direction.equals(DirectionType.UP)) {
+                location.add(0, size, 0);
+                vector = i == 0 ? locations[2].toVector() : locations[3].toVector();
+            } else vector = i == 0 ? locations[0].toVector() : locations[1].toVector();
 
-                start.add(0.5, size, 0.5);
-                end = i == 0 ? inclined[2].toVector() : inclined[3].toVector();
+            location.setDirection(vector.subtract(location.toVector()));
 
-            } else {
-
-                start.add(0.5, 0, 0.5);
-                end = i == 0 ? inclined[0].toVector() : inclined[1].toVector();
-
-            }
-
-            start.setDirection(end.subtract(start.toVector()));
-
-            final Vector increase = start.getDirection().multiply(0.1D);
-            final double distance = direction == DirectionType.UP ? start.distance(inclined[2]) : start.distance(inclined[0]);
+            final Vector increase = location.getDirection().multiply(0.1);
+            final double distance = direction == DirectionType.UP ? location.distance(locations[2]) : location.distance(locations[0]);
 
             for (double j = 0; j < distance / 2 * size; j += 0.1) {
-                final Location loc = start.add(increase);
-                sendParticle(loc, color);
+                location.add(increase);
+                sendParticle(player, location, color);
             }
         }
     }
 
     @SneakyThrows
-    private void sendParticle(final Location location, final int[] color) {
+    private void sendParticle(final Player player, final Location location, final int[] color) {
         final Color rgb = Color.fromRGB(color[0], color[1], color[2]);
         final Object dustOptions = instance(doCon, rgb, 1);
 
-        location.getWorld().getNearbyEntities(location, 30, 30, 30)
-          .stream().filter(player -> player instanceof Player)
-          .forEach(player -> ((Player) player).spawnParticle(Particle.REDSTONE, location, 1, 0.0D, 0.0D, 0.0D, 0.0D, dustOptions));
+        location.getWorld().getNearbyEntities(location, 30, 30, 30).stream()
+          .filter(target -> target instanceof Player)
+          .forEach(target -> ((Player) target).spawnParticle(Particle.REDSTONE, location, 1, 0.0D, 0.0D, 0.0D, 0.0D, dustOptions));
     }
 
-    private Location[] getDirection(final Location location, final double size) {
-        float yaw = (location.getYaw() - 90) % 360;
+    private Location[] getDirection(final Player player, final Location location, final double size) {
+        float yaw = (player.getLocation().getYaw() - 90) % 360;
+        if (yaw < 0) yaw += 360;
 
-        if (yaw < 0) yaw = yaw + 360;
-
-        if ((yaw >= 45.0F && yaw <= 135.0F) || (yaw >= 225.0F && yaw <= 315.0F)) {
+        if (yaw > 44 && yaw < 136 || yaw > 224 && yaw < 316) {
             return new Location[] {
-              new Location(location.getWorld(), location.getBlockX() + 0.5 + 0.7, location.getBlockY() + 1, location.getBlockZ() + 0.5),
-              new Location(location.getWorld(), location.getBlockX() + 0.5 - 0.7, location.getBlockY() + 1, location.getBlockZ() + 0.5),
-              new Location(location.getWorld(), location.getBlockX() + 0.5 + 0.7, location.getBlockY() + size - 1, location.getBlockZ() + 0.5),
-              new Location(location.getWorld(), location.getBlockX() + 0.5 - 0.7, location.getBlockY() + size - 1, location.getBlockZ() + 0.5)
+              location.clone().add(0.7, 1, 0),
+              location.clone().add(- 0.7, 1, 0),
+              location.clone().add(0.7, size - 1, 0),
+              location.clone().add(- 0.7, size - 1, 0)
             };
         }
 
-        if ((yaw >= 135 && yaw <= 225) || yaw >= 315 || yaw <= 45) {
+        if (yaw > 134 && yaw < 226 || yaw < 46 || yaw > 314) {
             return new Location[] {
-              new Location(location.getWorld(), location.getBlockX() + 0.5, location.getBlockY() + 1, location.getBlockZ() + 0.5 + 0.7),
-              new Location(location.getWorld(), location.getBlockX() + 0.5, location.getBlockY() + 1, location.getBlockZ() + 0.5 - 0.7),
-              new Location(location.getWorld(), location.getBlockX() + 0.5, location.getBlockY() + size - 1, location.getBlockZ() + 0.5 + 0.7),
-              new Location(location.getWorld(), location.getBlockX() + 0.5, location.getBlockY() + size - 1, location.getBlockZ() + 0.5 - 0.7)
+              location.clone().add(0, 1, 0.7),
+              location.clone().add(0, 1, - 0.7),
+              location.clone().add(0, size - 1, 0.7),
+              location.clone().add(0, size - 1, - 0.7)
             };
         }
 
