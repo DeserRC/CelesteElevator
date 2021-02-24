@@ -3,10 +3,10 @@ package com.celeste.celesteelevator.listener;
 import com.celeste.celesteelevator.CelesteElevator;
 import com.celeste.celesteelevator.manager.ConfigManager;
 import com.celeste.celesteelevator.manager.ElevatorManager;
+import com.celeste.celesteelevator.type.DirectionType;
 import com.celeste.celesteelevator.util.adapter.MessageAdapter;
 import lombok.AllArgsConstructor;
 import org.bukkit.Location;
-import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -42,14 +42,15 @@ public class TeleportListener implements Listener {
         final MessageAdapter message = plugin.getMessageFactory().getMessageAdapter();
         final Location newLocation = location.clone();
 
-        for (int i = block.getY(); i <= limit; i++) {
+        for (int i = block.getY() + 2; i <= limit; i++) {
             newLocation.setY(i);
 
             final Block nextBlock = newLocation.getBlock();
             if (!elevator.containsMetaData(nextBlock)) continue;
 
-            player.teleport(newLocation);
+            player.teleport(nextBlock.getLocation().add(0.5, 1, 0.5));
             elevator.sendSound(player, "sound.up.");
+            elevator.sendParticle(player, DirectionType.UP);
             message.adaptAndSendToSender(player, "up.success");
             break;
         }
@@ -75,14 +76,15 @@ public class TeleportListener implements Listener {
         final MessageAdapter message = plugin.getMessageFactory().getMessageAdapter();
         final Location newLocation = location.clone();
 
-        for (int i = block.getY(); i >= limit; i--) {
+        for (int i = block.getY() - 1; i >= limit; i--) {
             newLocation.setY(i);
 
             final Block nextBlock = newLocation.getBlock();
             if (!elevator.containsMetaData(nextBlock)) continue;
 
-            player.teleport(newLocation);
+            player.teleport(nextBlock.getLocation().add(0.5, 1, 0.5));
             elevator.sendSound(player, "sound.down.");
+            elevator.sendParticle(player, DirectionType.DOWN);
             message.adaptAndSendToSender(player, "down.success");
             break;
         }

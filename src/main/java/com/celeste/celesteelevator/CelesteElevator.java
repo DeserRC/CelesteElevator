@@ -32,11 +32,19 @@ public class CelesteElevator extends ServerPlugin {
     private TaskFactory taskFactory;
 
     @Override
-    public void onEnable() {
+    public void onLoad() {
         this.executor = Executors.newCachedThreadPool();
         this.scheduled = Executors.newScheduledThreadPool(2);
 
         this.configManager = new ConfigManager(this);
+    }
+
+    @Override
+    public void onEnable() {
+        this.connectionFactory = new ConnectionFactory(this);
+        this.elevatorFactory = new ElevatorFactory(this);
+        this.messageFactory = new MessageFactory(this);
+        this.taskFactory = new TaskFactory(this);
 
         registerListeners(
           new BlockListener(this),
@@ -47,26 +55,18 @@ public class CelesteElevator extends ServerPlugin {
           new ElevatorCommand(this),
           new ElevatorReloadCommand(this)
         );
-    }
-
-    @Override
-    public void onLoad() {
-        this.connectionFactory = new ConnectionFactory(this);
-        this.elevatorFactory = new ElevatorFactory(this);
-        this.messageFactory = new MessageFactory(this);
-        this.taskFactory = new TaskFactory(this);
 
         loadTasks();
     }
 
     @Override
     public void onDisable() {
+        taskFactory.getElevatorUpdateTask().run();
+        getConnectionFactory().getSqlProcessor().disconnect();
+
         HandlerList.unregisterAll();
         executor.shutdown();
         scheduled.shutdown();
-
-        taskFactory.getElevatorUpdateTask().run();
-        getConnectionFactory().getSqlProcessor().disconnect();
     }
 
     private void loadTasks() {

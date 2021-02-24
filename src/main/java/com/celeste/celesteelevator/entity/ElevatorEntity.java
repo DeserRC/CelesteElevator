@@ -22,7 +22,7 @@ public class ElevatorEntity {
 
     public ElevatorEntity(final UUID id, final Location location) {
         this.id = id;
-        this.serialize = LocationUtil.serialize(location, false);
+        this.serialize = LocationUtil.serialize(location);
         this.location = location;
     }
 

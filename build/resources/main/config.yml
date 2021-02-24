@@ -1,4 +1,4 @@
-mysql:
+mysql: # MySQL storage
   hostname: "localhost"
   port: "3306"
   database: "test"
@@ -17,3 +17,75 @@ elevator: # Elevator Template
   lore: []
   # Item enchantment (Remember in disable the glow) - (All Minecraft enchants https://ghostbin.co/paste/w2ttacs)
   enchantment: []
+
+# Worlds that elevators are unallowed
+blacklist:
+  - "world"
+  - "world1"
+
+# Max distance the elevator will be teleported
+maxdistance: 10
+
+sound: # Elevator Sounds - All MineCraft Sounds - https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Sound.html
+  up: # Sound when a player goes above floor
+    # Enable / Disable sound
+    use: true
+    # Sound type
+    type: "ENTITY_EXPERIENCE_ORB_PICKUP"
+    # Volume of the sound
+    volume: 1.0
+    # Pitch of the sound
+    pitch: 1.0
+  down: # Sound when a player goes bellow floor
+    # Enable / Disable sound
+    use: true
+    # Sound type
+    type: "ENTITY_EXPERIENCE_ORB_PICKUP"
+    # Volume of the sound
+    volume: 1.0
+    # Pitch of the sound
+    pitch: 1.0
+  place: # Sound when placing an elevator
+    # Enable / Disable sound
+    use: true
+    # Sound type
+    type: "BLOCK_ANVIL_LAND"
+    # Volume of the sound
+    volume: 1.0
+    # Pitch of the sound
+    pitch: 1.0
+  break: # Sound when breaking an elevator
+    # Enable / Disable sound
+    use: true
+    # Sound type
+    type: "ENTITY_ITEM_BREAK"
+    # Volume of the sound
+    volume: 1.0
+    # Pitch of the sound
+    pitch: 1.0
+
+particle: # Elevator Particles
+  up: # Particle when a player goes above floor
+    # Enable / Disable particle
+    use: true
+    # Particle size
+    size: 2.0
+    color: # Particle color in RGB format
+      # Amount of red (0 - 255)
+      red: 0
+      # Amount of green (0 - 255)
+      green: 170
+      # Amount of blue (0 - 255)
+      blue: 0
+  down: # Particle when a player goes bellow floor
+    # Enable / Disable particle
+    use: true
+    # Particle size
+    size: 2.0
+    color: # Particle color in RGB format
+      # Amount of red (0 - 255)
+      red: 170
+      # Amount of green (0 - 255)
+      green: 0
+      # Amount of blue (0 - 255)
+      blue: 0

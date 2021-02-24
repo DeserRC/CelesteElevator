@@ -26,8 +26,6 @@ public class ConnectionFactory {
         );
 
         this.elevatorDAO = new ElevatorDAO(sqlProcessor.getSqlConnectionProvider());
-        this.elevatorDAO.createTable();
-
     }
 
 }

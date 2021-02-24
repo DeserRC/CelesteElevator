@@ -117,8 +117,16 @@ public class ReflectionUtil {
         return field.getType();
     }
 
+    public static boolean isEquals(final int checkVersion) {
+        return Integer.parseInt(version.split("_") [1]) == checkVersion;
+    }
+
     public static boolean isEqualsOrMoreRecent(final int checkVersion) {
         return Integer.parseInt(version.split("_") [1]) >= checkVersion;
+    }
+
+    public static boolean isEqualsOrLessRecent(final int checkVersion) {
+        return Integer.parseInt(version.split("_") [1]) <= checkVersion;
     }
 
 }

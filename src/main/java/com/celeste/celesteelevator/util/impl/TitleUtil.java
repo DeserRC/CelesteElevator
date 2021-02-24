@@ -115,7 +115,7 @@ public class TitleUtil extends MessagesUtil {
             if (!useTitle) return null;
 
             title = config.get(path + ".title", file);
-            subtitle = config.get(path + ".subTitle", file);
+            subtitle = config.get(path + ".subtitle", file);
         }
 
         for (final Entry<String, String> entry : entries) {

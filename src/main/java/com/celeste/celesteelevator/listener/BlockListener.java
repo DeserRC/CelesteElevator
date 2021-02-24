@@ -4,6 +4,8 @@ import com.celeste.celesteelevator.CelesteElevator;
 import com.celeste.celesteelevator.manager.ElevatorManager;
 import com.celeste.celesteelevator.util.adapter.MessageAdapter;
 import lombok.AllArgsConstructor;
+import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -33,7 +35,7 @@ public class BlockListener implements Listener {
         final MessageAdapter message = plugin.getMessageFactory().getMessageAdapter();
         final Player player = event.getPlayer();
 
-        if (worlds.stream().anyMatch(world -> world.equalsIgnoreCase(block.getWorld().getName()))) {
+        if (worlds.stream().noneMatch(world -> world.equalsIgnoreCase(block.getWorld().getName()))) {
             message.adaptAndSendToSender(player, "place.blacklist");
             event.setCancelled(true);
             return;
@@ -58,7 +60,10 @@ public class BlockListener implements Listener {
         elevator.sendSound(player, "sound.break.");
         message.adaptAndSendToSender(player, "break.success");
 
-        final ItemStack item = elevator.getElevator(block.getType(), 1);
+        final Material material = block.getType();
+        final int data = block.getData();
+
+        final ItemStack item = elevator.getElevator(material, data, 1);
         player.getInventory().addItem(item);
     }
 

@@ -26,7 +26,6 @@ public class ElevatorReloadCommand {
         final MessageAdapter message = plugin.getMessageFactory().getMessageAdapter();
 
         final CommandSender sender = context.getSender();
-
         config.load();
 
         message.adaptAndSendToSender(sender, "reload.success");

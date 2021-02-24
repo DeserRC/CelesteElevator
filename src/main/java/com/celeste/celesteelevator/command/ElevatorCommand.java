@@ -13,6 +13,9 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.Arrays;
+import java.util.regex.Pattern;
+
 import static com.celeste.celesteelevator.util.MessagesUtil.build;
 
 @AllArgsConstructor
@@ -37,14 +40,23 @@ public class ElevatorCommand {
             message.adaptAndSendToSender(sender, "elevator.player_not_found",
               build("{player}", targetName)
             );
+
             return;
         }
 
-        final Material material = Material.getMaterial(materialName);
+        final String[] split = materialName.split(":");
+
+        final Material material = Arrays.stream(Material.values())
+          .filter(type -> split[0].equalsIgnoreCase(type.name()))
+          .findFirst()
+          .orElse(null);
+        final int data = split.length == 2 && !Pattern.compile("[^0-9]").matcher(split[1]).find() ? Integer.parseInt(split[1]) : 0;
+
         if (material == null) {
             message.adaptAndSendToSender(sender, "elevator.material_not_found",
               build("{material}", materialName)
             );
+
             return;
         }
 
@@ -52,10 +64,11 @@ public class ElevatorCommand {
             message.adaptAndSendToSender(sender, "elevator.invalid_amount",
               build("{amount}", amount)
             );
+
             return;
         }
 
-        final ItemStack item = elevator.getElevator(material, amount);
+        final ItemStack item = elevator.getElevator(material, data, amount);
         target.getInventory().addItem(item);
 
         message.adaptAndSendToSender(sender, "elevator.success",

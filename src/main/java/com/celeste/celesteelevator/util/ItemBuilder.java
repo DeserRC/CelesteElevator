@@ -68,7 +68,10 @@ public class ItemBuilder {
     }
 
     public ItemBuilder name(final String name) {
-        if (isValid(name)) meta.setDisplayName(name);
+        if (isValid(name)) {
+            meta.setDisplayName(name);
+        }
+
         return this;
     }
 
@@ -418,6 +421,8 @@ public class ItemBuilder {
 
     @SneakyThrows
     public <T> ItemBuilder nbtTag(final T key, final T value) {
+        itemStack.setItemMeta(meta);
+
         final Class<?> craftItemStackClazz = getOBC("inventory.CraftItemStack");
         final Class<?> itemStackClazz = getNMS("ItemStack");
         final Class<?> compoundClazz = getNMS("NBTTagCompound");
@@ -433,7 +438,7 @@ public class ItemBuilder {
         final Class<?> tagClazz = getNMS("NBTTagString");
         final Class<?> baseClazz = getNMS("NBTBase");
 
-        final Constructor<?> tagCon = getCon(tagClazz, String.class);
+        final Constructor<?> tagCon = getDcCon(tagClazz, String.class);
 
         final Method set = getMethod(compoundClazz, "set", String.class, baseClazz);
         final Method setTag = getMethod(itemStackClazz, "setTag", compoundClazz);

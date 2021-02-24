@@ -55,10 +55,10 @@ public class ChatUtil extends MessagesUtil {
 
         if (file.contains(path)) {
 
-            final boolean containsUse = file.contains(path + ".use");
-            final boolean useChat = containsUse ? config.get(path + ".use", file) : false;
+            final boolean containsuse = file.contains(path + ".use");
+            final boolean useChat = containsuse ? config.get(path + ".use", file) : false;
 
-            if (!containsUse) message = config.get(path, file);
+            if (!containsuse) message = config.get(path, file);
             else if (useChat) message = config.get(path + ".message", file);
 
             else return null;

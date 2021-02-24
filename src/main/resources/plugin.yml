@@ -1,4 +1,5 @@
 name: CelesteElevator
 main: com.celeste.celesteelevator.CelesteElevator
+api-version: 1.13
 version: 1.0.0
 authors: [Luiza Prestes, Deser]
