@@ -173,7 +173,7 @@ public class ElevatorManager {
         final Object dustOptions = instance(doCon, rgb, 1);
 
         location.getWorld().getNearbyEntities(location, 30, 30, 30).stream()
-          .filter(target -> target instanceof Player)
+          .filter(target -> target instanceof Player && !player.equals(target))
           .forEach(target -> ((Player) target).spawnParticle(Particle.REDSTONE, location, 1, 0.0D, 0.0D, 0.0D, 0.0D, dustOptions));
     }
 

@@ -10,20 +10,20 @@ com/celeste/celesteelevator/type/DirectionType.java
  com.celeste.celesteelevator.type.DirectionType
 com/celeste/celesteelevator/util/LocationUtil.java
  com.celeste.celesteelevator.util.LocationUtil
-com/celeste/celesteelevator/dao/ElevatorDAO.java
- com.celeste.celesteelevator.dao.ElevatorDAO
 com/celeste/celesteelevator/manager/ConfigManager.java
  com.celeste.celesteelevator.manager.ConfigManager
-com/celeste/celesteelevator/util/impl/BarUtil.java
- com.celeste.celesteelevator.util.impl.BarUtil
-com/celeste/celesteelevator/task/ElevatorGetTask.java
- com.celeste.celesteelevator.task.ElevatorGetTask
+com/celeste/celesteelevator/CelesteElevator.java
+ com.celeste.celesteelevator.CelesteElevator
+com/celeste/celesteelevator/listener/TeleportListener.java
+ com.celeste.celesteelevator.listener.TeleportListener
 com/celeste/celesteelevator/factory/MessageFactory.java
  com.celeste.celesteelevator.factory.MessageFactory
 com/celeste/celesteelevator/util/adapter/MessageAdapter.java
  com.celeste.celesteelevator.util.adapter.MessageAdapter
 com/celeste/celesteelevator/command/ElevatorCommand.java
  com.celeste.celesteelevator.command.ElevatorCommand
+com/celeste/celesteelevator/dao/ElevatorDAO.java
+ com.celeste.celesteelevator.dao.ElevatorDAO
 com/celeste/celesteelevator/listener/BlockListener.java
  com.celeste.celesteelevator.listener.BlockListener
 com/celeste/celesteelevator/factory/ElevatorFactory.java
@@ -44,7 +44,7 @@ com/celeste/celesteelevator/util/MessagesUtil.java
  com.celeste.celesteelevator.util.MessagesUtil
 com/celeste/celesteelevator/util/impl/TitleUtil.java
  com.celeste.celesteelevator.util.impl.TitleUtil
-com/celeste/celesteelevator/CelesteElevator.java
- com.celeste.celesteelevator.CelesteElevator
-com/celeste/celesteelevator/listener/TeleportListener.java
- com.celeste.celesteelevator.listener.TeleportListener
+com/celeste/celesteelevator/task/ElevatorGetTask.java
+ com.celeste.celesteelevator.task.ElevatorGetTask
+com/celeste/celesteelevator/util/impl/BarUtil.java
+ com.celeste.celesteelevator.util.impl.BarUtil

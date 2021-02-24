@@ -14,7 +14,7 @@ public class ElevatorDAO implements Storage<ElevatorEntity> {
 
     private static final String CREATE_REPORTS_SQL = "CREATE TABLE IF NOT EXISTS `elevator` (" +
       "id CHAR(36) NOT NULL PRIMARY KEY, " +
-      "location VARCHAR(100) NOT NULL);";
+      "location TEXT NOT NULL);";
     private static final String STORE_REPORT_SQL = "INSERT INTO `elevator` VALUES (?, ?);";
     private static final String DELETE_REPORT_SQL = "DELETE FROM `elevator` WHERE id=?;";
     private static final String SELECT_FROM_REPORTS_WHERE_ID = "SELECT * FROM `elevator` WHERE id=?;";
