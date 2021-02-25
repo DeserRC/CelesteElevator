@@ -13,6 +13,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.metadata.FixedMetadataValue;
 
 import java.util.List;
 import java.util.UUID;
@@ -41,6 +42,8 @@ public class BlockListener implements Listener {
             return;
         }
 
+        block.setMetadata("data", new FixedMetadataValue(plugin, (int) item.getDurability()));
+
         elevator.createElevator(block);
         elevator.sendSound(player, "sound.place.");
         message.adaptAndSendToSender(player, "place.success");
@@ -52,6 +55,7 @@ public class BlockListener implements Listener {
         final Block block = event.getBlock();
 
         if (!elevator.containsMetaData(block)) return;
+        event.setDropItems(false);
 
         final Player player = event.getPlayer();
         final MessageAdapter message = plugin.getMessageFactory().getMessageAdapter();
@@ -61,9 +65,9 @@ public class BlockListener implements Listener {
         message.adaptAndSendToSender(player, "break.success");
 
         final Material material = block.getType();
-        final int data = block.getData();
+        final int data = block.getMetadata("data").get(0).asInt();
 
-        final ItemStack item = elevator.getElevator(material, data, 1);
+        final ItemStack item = elevator.getElevator(material, data,1);
         player.getInventory().addItem(item);
     }
 

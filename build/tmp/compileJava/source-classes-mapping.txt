@@ -2,14 +2,14 @@ com/celeste/celesteelevator/util/ReflectionUtil.java
  com.celeste.celesteelevator.util.ReflectionUtil
 com/celeste/celesteelevator/type/EnchantType.java
  com.celeste.celesteelevator.type.EnchantType
-com/celeste/celesteelevator/util/ItemBuilder.java
- com.celeste.celesteelevator.util.ItemBuilder
-com/celeste/celesteelevator/entity/ElevatorEntity.java
- com.celeste.celesteelevator.entity.ElevatorEntity
-com/celeste/celesteelevator/type/DirectionType.java
- com.celeste.celesteelevator.type.DirectionType
 com/celeste/celesteelevator/util/LocationUtil.java
  com.celeste.celesteelevator.util.LocationUtil
+com/celeste/celesteelevator/util/ItemBuilder.java
+ com.celeste.celesteelevator.util.ItemBuilder
+com/celeste/celesteelevator/type/DirectionType.java
+ com.celeste.celesteelevator.type.DirectionType
+com/celeste/celesteelevator/entity/ElevatorEntity.java
+ com.celeste.celesteelevator.entity.ElevatorEntity
 com/celeste/celesteelevator/manager/ConfigManager.java
  com.celeste.celesteelevator.manager.ConfigManager
 com/celeste/celesteelevator/CelesteElevator.java

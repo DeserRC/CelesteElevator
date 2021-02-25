@@ -39,9 +39,9 @@ public class ElevatorDAO implements Storage<ElevatorEntity> {
     public void store(final ElevatorEntity report) {
         connectionProvider.executeUpdate(
           STORE_REPORT_SQL,
-          report.getId(),
+          report.getId().toString(),
           report.getSerialize()
-        );
+        ).join();
     }
 
     @Override
@@ -49,7 +49,7 @@ public class ElevatorDAO implements Storage<ElevatorEntity> {
         connectionProvider.executeUpdate(
           DELETE_REPORT_SQL,
           id.toString()
-        );
+        ).join();
     }
 
     @Override

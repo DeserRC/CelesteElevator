@@ -46,14 +46,14 @@ public class CelesteElevator extends ServerPlugin {
         this.messageFactory = new MessageFactory(this);
         this.taskFactory = new TaskFactory(this);
 
-        registerListeners(
-          new BlockListener(this),
-          new TeleportListener(this)
-        );
-
         startCommandManager("eua",
           new ElevatorCommand(this),
           new ElevatorReloadCommand(this)
+        );
+
+        registerListeners(
+          new BlockListener(this),
+          new TeleportListener(this)
         );
 
         loadTasks();
@@ -71,7 +71,7 @@ public class CelesteElevator extends ServerPlugin {
 
     private void loadTasks() {
         executor.execute(taskFactory.getElevatorGetTask());
-        scheduled.scheduleWithFixedDelay(taskFactory.getElevatorUpdateTask(), 1, 1, TimeUnit.MINUTES);
+        scheduled.scheduleWithFixedDelay(taskFactory.getElevatorUpdateTask(), 30, 30, TimeUnit.SECONDS);
     }
 
 }
