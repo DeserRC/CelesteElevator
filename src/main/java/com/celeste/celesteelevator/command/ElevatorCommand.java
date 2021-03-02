@@ -11,7 +11,10 @@ import me.saiintbrisson.minecraft.command.annotation.Completer;
 import me.saiintbrisson.minecraft.command.command.Context;
 import me.saiintbrisson.minecraft.command.target.CommandTarget;
 import org.bukkit.Bukkit;
+import org.bukkit.Chunk;
+import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -28,15 +31,16 @@ public class ElevatorCommand {
 
     private final CelesteElevator plugin;
 
-    private final List<String> materials;
+    private final List<Material> materials;
     private final List<String> amounts;
 
     public ElevatorCommand(final CelesteElevator plugin) {
         this.plugin = plugin;
         this.amounts = new ArrayList<>();
-        this.materials = new ArrayList<>();
 
-        Arrays.stream(Material.values()).forEach(material -> materials.add(material.name()));
+        materials = Arrays.stream(Material.values())
+          .filter(material -> material.isSolid() && material.isBlock() && !material.isInteractable() && !material.hasGravity())
+          .collect(Collectors.toList());
 
         for (int i = 1; i < 2305; i++) {
             amounts.add(String.valueOf(i));
@@ -65,11 +69,11 @@ public class ElevatorCommand {
         }
 
         final String[] split = materialName.split(":");
-
-        final Material material = Arrays.stream(Material.values())
+        final Material material = materials.stream()
           .filter(type -> split[0].equalsIgnoreCase(type.name()))
           .findFirst()
           .orElse(null);
+
         final int data = split.length == 2 && !Pattern.compile("[^0-9]").matcher(split[1]).find() ? Integer.parseInt(split[1]) : 0;
 
         if (material == null) {
@@ -110,11 +114,17 @@ public class ElevatorCommand {
             case 1:
                 return Bukkit.getOnlinePlayers().stream()
                   .map(Player::getDisplayName)
+                  .filter(name -> name.toUpperCase().startsWith(context.getArg(0).toUpperCase()))
                   .collect(Collectors.toList());
             case 2:
-                return materials;
+                return materials.stream()
+                  .map(Enum::name)
+                  .filter(name -> name.toUpperCase().startsWith(context.getArg(1).toUpperCase()))
+                  .collect(Collectors.toList());
             case 3:
-                return amounts;
+                return amounts.stream()
+                  .filter(amount -> amount.startsWith(context.getArg(2)))
+                  .collect(Collectors.toList());
         }
 
         return null;

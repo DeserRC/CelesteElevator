@@ -36,7 +36,7 @@ public class BlockListener implements Listener {
         final MessageAdapter message = plugin.getMessageFactory().getMessageAdapter();
         final Player player = event.getPlayer();
 
-        if (worlds.stream().noneMatch(world -> world.equalsIgnoreCase(block.getWorld().getName()))) {
+        if (worlds.stream().anyMatch(world -> world.equalsIgnoreCase(block.getWorld().getName()))) {
             message.adaptAndSendToSender(player, "place.blacklist");
             event.setCancelled(true);
             return;
