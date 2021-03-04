@@ -22,6 +22,7 @@ elevator: # Elevator Template
 blacklist:
   - "world"
   - "world1"
+  - "world2"
 
 # Max distance the elevator will be teleported
 maxdistance: 10
