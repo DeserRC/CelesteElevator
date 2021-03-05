@@ -11,17 +11,8 @@ import com.celeste.celesteelevator.listener.BlockListener;
 import com.celeste.celesteelevator.listener.TeleportListener;
 import com.celeste.celesteelevator.manager.ConfigManager;
 import lombok.Getter;
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.block.Block;
-import org.bukkit.configuration.InvalidConfigurationException;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.event.HandlerList;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;

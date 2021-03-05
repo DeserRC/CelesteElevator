@@ -27,7 +27,7 @@ public class TeleportListener implements Listener {
         final Location from = event.getFrom();
         final Location to = event.getTo();
 
-        if (from.getY() <= to.getY() || from.getX() != to.getX() || from.getZ() != to.getZ()) return;
+        if (from.getY() <= to.getY()) return;
 
         final Block block = from.clone().subtract(0, 1, 0).getBlock();
         final Location location = block.getLocation();

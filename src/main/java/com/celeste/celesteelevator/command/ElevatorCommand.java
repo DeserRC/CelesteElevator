@@ -3,18 +3,12 @@ package com.celeste.celesteelevator.command;
 import com.celeste.celesteelevator.CelesteElevator;
 import com.celeste.celesteelevator.manager.ElevatorManager;
 import com.celeste.celesteelevator.util.adapter.MessageAdapter;
-import com.google.common.base.Functions;
-import com.google.common.collect.Lists;
-import lombok.AllArgsConstructor;
 import me.saiintbrisson.minecraft.command.annotation.Command;
 import me.saiintbrisson.minecraft.command.annotation.Completer;
 import me.saiintbrisson.minecraft.command.command.Context;
 import me.saiintbrisson.minecraft.command.target.CommandTarget;
 import org.bukkit.Bukkit;
-import org.bukkit.Chunk;
-import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.block.Block;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -39,7 +33,7 @@ public class ElevatorCommand {
         this.amounts = new ArrayList<>();
 
         materials = Arrays.stream(Material.values())
-          .filter(material -> material.isSolid() && material.isBlock() && !material.isInteractable() && !material.hasGravity())
+          .filter(material -> material.isSolid() && material.isBlock() && !material.isInteractable() && !material.hasGravity() && material.isOccluding())
           .collect(Collectors.toList());
 
         for (int i = 1; i < 2305; i++) {
@@ -51,7 +45,8 @@ public class ElevatorCommand {
       name = "elevator",
       permission = "elevator.admin",
       target = CommandTarget.ALL,
-      usage = "elevator <player> <material> <amount>"
+      usage = "elevator <player> <material> <amount>",
+      aliases = "elevator"
     )
     public void handleElevatorCommand(final Context<CommandSender> context, final String targetName, final String materialName, final int amount) {
         final ElevatorManager elevator = plugin.getElevatorFactory().getElevatorManager();

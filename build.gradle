@@ -19,6 +19,12 @@ repositories {
 
 dependencies {
     /*
+    DATABASES
+    */
+    implementation 'mysql:mysql-connector-java:8.0.21'
+    implementation 'com.zaxxer:HikariCP:4.0.2'
+
+    /*
     SPIGOT
     */
     compileOnly "org.spigotmc:spigot:1.16.4-R0.1-SNAPSHOT"
@@ -29,7 +35,7 @@ dependencies {
     implementation "com.github.SaiintBrisson.command-framework:bukkit:1.1.1"
     implementation 'com.github.rede-celeste.common:spigot:691c166af2'
     implementation 'com.github.rede-celeste.common:shared:7a7f106901'
-    implementation 'com.github.rede-celeste.databases:mysql-provider:1b320c2389'
+    implementation 'com.github.rede-celeste.databases:mysql-provider:bb463efadb'
 
     /*
     ANNOTATION

@@ -139,7 +139,7 @@ public class ElevatorManager {
 
         for (double i = 0; i < size * 10; i++) {
             final Location location = blockLocation.clone().add(0, size - i / 10, 0);
-            sendParticle(player, location, color);
+            sendParticle(location, color);
         }
 
         final Location[] locations = getDirection(player, blockLocation, size);
@@ -162,18 +162,18 @@ public class ElevatorManager {
 
             for (double j = 0; j < distance / 2 * size; j += 0.1) {
                 location.add(increase);
-                sendParticle(player, location, color);
+                sendParticle(location, color);
             }
         }
     }
 
     @SneakyThrows
-    private void sendParticle(final Player player, final Location location, final int[] color) {
+    private void sendParticle(final Location location, final int[] color) {
         final Color rgb = Color.fromRGB(color[0], color[1], color[2]);
         final Object dustOptions = instance(doCon, rgb, 1);
 
         location.getWorld().getNearbyEntities(location, 30, 30, 30).stream()
-          .filter(target -> target instanceof Player && !player.equals(target))
+          .filter(target -> target instanceof Player)
           .forEach(target -> ((Player) target).spawnParticle(Particle.REDSTONE, location, 1, 0.0D, 0.0D, 0.0D, 0.0D, dustOptions));
     }
 
