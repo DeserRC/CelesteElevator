@@ -13,6 +13,9 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerToggleSneakEvent;
+import org.bukkit.event.server.TabCompleteEvent;
+
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 public class TeleportListener implements Listener {
@@ -98,6 +101,15 @@ public class TeleportListener implements Listener {
             message.adaptAndSendToSender(player, "down.success");
             break;
         }
+    }
+
+    @EventHandler
+    public void onTabCompleter(final TabCompleteEvent event) {
+        event.setCompletions(event.getCompletions().stream()
+          .map(completer -> completer
+            .replaceAll("§[a-f0-9]", "")
+            .replaceAll("&[a-f0-9]", "")
+          ).collect(Collectors.toList()));
     }
 
 }

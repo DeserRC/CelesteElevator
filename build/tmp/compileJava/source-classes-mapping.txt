@@ -30,8 +30,8 @@ com/celeste/celesteelevator/manager/ConfigManager.java
  com.celeste.celesteelevator.manager.ConfigManager
 com/celeste/celesteelevator/util/impl/TitleUtil.java
  com.celeste.celesteelevator.util.impl.TitleUtil
-com/celeste/celesteelevator/listener/TeleportListener.java
- com.celeste.celesteelevator.listener.TeleportListener
+com/celeste/celesteelevator/factory/ConnectionFactory.java
+ com.celeste.celesteelevator.factory.ConnectionFactory
 com/celeste/celesteelevator/type/DirectionType.java
  com.celeste.celesteelevator.type.DirectionType
 com/celeste/celesteelevator/util/impl/ChatUtil.java
@@ -42,9 +42,9 @@ com/celeste/celesteelevator/command/ElevatorReloadCommand.java
  com.celeste.celesteelevator.command.ElevatorReloadCommand
 com/celeste/celesteelevator/task/ElevatorUpdateTask.java
  com.celeste.celesteelevator.task.ElevatorUpdateTask
-com/celeste/celesteelevator/factory/ConnectionFactory.java
- com.celeste.celesteelevator.factory.ConnectionFactory
 com/celeste/celesteelevator/CelesteElevator.java
  com.celeste.celesteelevator.CelesteElevator
+com/celeste/celesteelevator/listener/TeleportListener.java
+ com.celeste.celesteelevator.listener.TeleportListener
 com/celeste/celesteelevator/command/ElevatorCommand.java
  com.celeste.celesteelevator.command.ElevatorCommand

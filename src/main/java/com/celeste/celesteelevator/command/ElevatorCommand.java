@@ -110,7 +110,6 @@ public class ElevatorCommand {
                 return Bukkit.getOnlinePlayers().stream()
                   .map(Player::getDisplayName)
                   .filter(name -> name.toUpperCase().startsWith(context.getArg(0).toUpperCase()))
-                  .map(name -> name.replaceAll("§[a-f0-9]", ""))
                   .collect(Collectors.toList());
             case 2:
                 return materials.stream()
