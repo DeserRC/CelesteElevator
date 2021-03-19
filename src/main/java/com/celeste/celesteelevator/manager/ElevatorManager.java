@@ -78,6 +78,10 @@ public class ElevatorManager {
         return block.getMetadata("elevator").get(0).asString();
     }
 
+    public ItemStack getElevator(final Material material, final int data) {
+        return getElevator(material, data, 1);
+    }
+
     public ItemStack getElevator(final Material material, final int data, final int amount) {
         final ConfigManager config = plugin.getConfigManager();
 

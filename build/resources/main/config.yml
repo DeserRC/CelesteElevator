@@ -90,3 +90,36 @@ particle: # Elevator Particles
       green: 0
       # Amount of blue (0 - 255)
       blue: 0
+
+craft: # Craft system
+  wool: # Any name
+    # Material of elevator that will be crafted
+    material: "WHITE_WOOL"
+    # Material date of elevator that will be crafted
+    data: 10
+    items: # Materials that will be used to craft the elevator
+      # The craft table slot and the item to be placed to craft the elevator
+      #
+      # EXAMPLE:
+      # {SLOT}: {MATERIAL}
+      0: "WHITE_WOOL"
+      1: "WHITE_WOOL"
+  stone: # Any name
+    # Material of elevator that will be crafted
+    material: "STONE"
+    # Material date of elevator that will be crafted
+    data: 1
+    items: # Materials that will be used to craft the elevator
+      # The craft table slot and the item to be placed to craft the elevator
+      #
+      # EXAMPLE:
+      # {SLOT}: {MATERIAL}
+      0: "GLASS"
+      1: "GLASS"
+      2: "GLASS"
+      3: "GLASS"
+      4: "STONE"
+      5: "GLASS"
+      6: "GLASS"
+      7: "GLASS"
+      8: "GLASS"

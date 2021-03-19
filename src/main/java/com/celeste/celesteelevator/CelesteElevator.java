@@ -11,7 +11,12 @@ import com.celeste.celesteelevator.listener.BlockListener;
 import com.celeste.celesteelevator.listener.TeleportListener;
 import com.celeste.celesteelevator.manager.ConfigManager;
 import lombok.Getter;
+import org.bukkit.Bukkit;
+import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.event.HandlerList;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.ShapedRecipe;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -57,6 +62,7 @@ public class CelesteElevator extends ServerPlugin {
         );
 
         loadTasks();
+        loadCrafts();
     }
 
     @Override
@@ -72,6 +78,35 @@ public class CelesteElevator extends ServerPlugin {
     private void loadTasks() {
         executor.execute(taskFactory.getElevatorGetTask());
         scheduled.scheduleWithFixedDelay(taskFactory.getElevatorUpdateTask(), 30, 30, TimeUnit.SECONDS);
+    }
+
+    private void loadCrafts() {
+        configManager.getKeysConfig("craft").forEach(name -> {
+            final String path = "craft." + name + ".";
+
+            final ItemStack elevator = elevatorFactory.getElevatorManager().getElevator(
+                Material.getMaterial(configManager.getConfig(path + "material")),
+                configManager.getConfig(path + "data")
+            );
+
+            final NamespacedKey key = new NamespacedKey(this, Material.getMaterial(configManager.getConfig(path + "material")).name());
+            final ShapedRecipe recipe = new ShapedRecipe(key, elevator);
+            recipe.shape("012", "345", "678");
+
+            configManager.getKeysConfig(path + "items").stream()
+                .map(craftItemSlot -> craftItemSlot.charAt(0))
+                .forEach(craftItemSlot -> {
+                    final Material craftItemMaterial = Material.getMaterial(
+                        configManager.getConfig("craft." + name + ".items." + craftItemSlot)
+                    );
+
+                    if (craftItemMaterial == null) return;
+
+                    recipe.setIngredient(craftItemSlot, craftItemMaterial);
+            });
+
+            Bukkit.addRecipe(recipe);
+        });
     }
 
 }
